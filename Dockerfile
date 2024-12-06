@@ -1,8 +1,15 @@
-FROM node:18.17.1
+FROM node:22.12.0
+
 WORKDIR /app
-ENV PORT 3000
-ENV MODEL_URL 'https://storage.googleapis.com/bucketsubmission-1/model-in-prod/model.json'
-COPY . .
+
+COPY package*.json ./
+
 RUN npm install
-EXPOSE 3000
+
+COPY . .
+
+EXPOSE 8080
+
+ENV MODEL_URL = "https://storage.googleapis.com/bucketsubmission-1/model-in-prod/model.json"
+
 CMD [ "npm", "run", "start"]
